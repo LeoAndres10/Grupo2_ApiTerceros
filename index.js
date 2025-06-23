@@ -4,16 +4,17 @@ const app = express();
 
 app.use(express.json());
 
-const API_URL = 'https://fakestoreapi.com/products';
-app.get('/productos', async (req, res) => {
-  try {
-    const response = await axios.get(API_URL);
-    res.json(response.data);
-  } catch (error) {
-    res.status(500).send('Error al obtener productos');
-  }
+  const API_URL = 'https://fakestoreapi.com';
+
+
+app.get('/products', async (req, res) => {
+    const response = await axios.get(API_URL+'/products');
+    return res.status(200).json({status: 200, message: "Success", data:response.data});
+  
+    
+  
 });
-app.post('/productos', async (req, res) => {
+app.post('/products', async (req, res) => {
   const nuevoProducto = {
     title: 'Producto de prueba',
     price: 29.99,
